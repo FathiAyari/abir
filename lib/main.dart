@@ -24,7 +24,36 @@ class MyApp extends StatelessWidget {
           // is not restarted.
           primarySwatch: Colors.blue,
         ),
-        home: test());
+        home: abir());
+  }
+}
+
+class abir extends StatefulWidget {
+  const abir({Key? key}) : super(key: key);
+
+  @override
+  _abirState createState() => _abirState();
+}
+
+/* null safety , setState => refresh build methode => statefull widget*/
+class _abirState extends State<abir> {
+  int index = 0;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: ListView(
+        children: [
+          ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  index = index + 1;
+                });
+              },
+              child: Text("change my name")),
+          Text("index=${index}"),
+        ],
+      ),
+    );
   }
 }
 
@@ -40,32 +69,17 @@ class test extends StatelessWidget {
           title: Text("bonjour"),
           centerTitle: true,
         ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 50),
-          child: Container(
-            decoration: BoxDecoration(
-                color: Colors.redAccent,
-                borderRadius: BorderRadius.circular(20)),
+        body: Container(
+            color: Colors.deepOrange,
             width: 300,
-            height: 200,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  "abir",
-                  style: TextStyle(fontSize: 50, color: Colors.blueAccent),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    print("good job abir");
-                  },
-                  child: Text("click me"),
-                ),
-              ],
-            ),
-          ),
-        ),
+            child: ListView.builder(
+                itemCount: 30,
+                itemBuilder: (context, index) {
+                  return Text(
+                    "abir ${index + 1} ",
+                    style: TextStyle(fontSize: 30),
+                  );
+                })),
       ),
     );
   }
