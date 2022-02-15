@@ -5,6 +5,7 @@ import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:hire_lawyer/Sign%20in/sign_in.dart';
 
 import 'onboarding_content.dart';
+import 'onboarding_controller.dart';
 
 class OnBoardingBody extends StatefulWidget {
   const OnBoardingBody({Key? key}) : super(key: key);
@@ -15,6 +16,7 @@ class OnBoardingBody extends StatefulWidget {
 
 class _OnBoardingBodyState extends State<OnBoardingBody> {
   PageController _controller = PageController();
+  var OnBoardingController = onBoardingController();
   int currentIndex = 0;
   List<OnbaordingContent> pages = [
     OnbaordingContent(
@@ -86,6 +88,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.blueAccent)),
                         onTap: () {
+                          OnBoardingController.check();
                           Get.to(() => SignIn());
                         },
                       ),
@@ -96,6 +99,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                               Get.to(() => SignIn());
                             }
                           : () {
+                              OnBoardingController.check();
                               _controller.nextPage(
                                   duration: Duration(milliseconds: 300),
                                   curve: Curves.easeInOutQuint);

@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:hire_lawyer/Sign%20in/sign_in.dart';
 import 'package:hire_lawyer/onBoarding/on_boarding_page.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,8 +18,13 @@ class SplashScreen extends StatefulWidget {
 class _SplashScrenState extends State<SplashScreen> {
   @override
   void initState() {
-    Timer(Duration(seconds: 3),
-        () => Get.to(() => OnBoardingBody())); // to is a destination
+    var resultSeen = GetStorage().read("seen");
+    print(resultSeen);
+    Timer(
+        Duration(seconds: 3),
+        () => Get.to(() => resultSeen == 1
+            ? SignIn()
+            : OnBoardingBody())); // to is a destination
     super.initState();
   }
 
