@@ -4,6 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hire_lawyer/Sign%20in/password_field.dart';
+import 'package:hire_lawyer/Sign_Up/sign_up.dart';
 
 import '../reset_password.dart';
 import 'action_button.dart';
@@ -18,6 +19,7 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
   TextEditingController email = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   var resultSeen = GetStorage().read("seen");
   @override
   Widget build(BuildContext context) {
@@ -62,7 +64,9 @@ class _SignInState extends State<SignIn> {
                       padding: EdgeInsets.symmetric(
                           vertical: size.height * 0.01,
                           horizontal: size.width * 0.12),
-                      child: PasswordField(),
+                      child: PasswordField(
+                        passwordController: passwordController,
+                      ),
                     ),
                     SizedBox(
                       height: size.height * 0.1,
@@ -101,6 +105,9 @@ class _SignInState extends State<SignIn> {
                         width: 1.0, // Underline width
                       ))),
                       child: GestureDetector(
+                        onTap: () {
+                          Get.to(() => SignUp());
+                        },
                         child: Text(
                           "Créer un compte ",
                           style: TextStyle(color: Colors.white, fontSize: 20),
